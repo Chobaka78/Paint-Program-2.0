@@ -56,7 +56,7 @@ myTime = time.Clock()
 
 ####################################################
 ## MUSIC
-music_l = ["music/Genki Dama Theme.wav","music/BeerusMadness.wav", "music/Ultra Instinct Reborn.wav",
+music_l = ["music/Genki Dama Theme.mp3","music/BeerusMadness.wav", "music/Ultra Instinct Reborn.wav",
 "music/Time To Strike Back.wav", "music/Frieza is Resurrected.wav", "music/Dragonballsuper.wav"]
 
 music = []
@@ -299,7 +299,28 @@ while running:
             running = False
             
         if evt.type == KEYDOWN:        
-                
+            if evt.key == K_RIGHT:
+                if b <= len(music_l):
+                    b += 1    
+                    try:
+                        mixer.music.load(music_l[b])
+                    except:
+                        b -= 1
+                        mixer.music.load(music_l[b])
+                    mixer.music.play(-1)
+
+            if evt.key == K_LEFT:
+                print("sdufhlisudhfiushdfliushdfhu")
+                if b <= len(music_l):
+                    b -= 1    
+                    print(b)
+                    try:
+                        mixer.music.load(music_l[b])
+                    except:
+                        b += 1
+                        mixer.music.load(music_l[b])
+                    mixer.music.play(-1)                        
+
             if evt.key==K_RIGHT and tool == "eraser":
                 eradius+=5
 
@@ -320,7 +341,6 @@ while running:
                 if len(redo) > 0:
                     undo.append(redo.pop())
                     canvas.blit(undo[-1], (0,0))
-
         if evt.type == MOUSEBUTTONDOWN:
 
             click = True
@@ -382,7 +402,7 @@ while running:
 
     mx,my=mouse.get_pos()
 
-    print(mx,my)
+    # print(mx,my)
 
     # print(mx,my)## to calculate the x and y of anthing if needed (helpful)
 
@@ -515,7 +535,7 @@ while running:
 #########################################################
     ##print(page,tool)
 ############################################################
-    if mb[0]==1: ## Checking left click
+    if mb[0]: ## Checking left click
 
         for m in range(14):
 
@@ -532,11 +552,12 @@ while running:
         if tool == "background":
             page = 0
 
-        if nextRect.collidepoint(mx,my) and len(music)>0:
-            mixer.music.stop()
-            b+=1
-            mixer.music.load(music.pop(b))
-            mixer.music.play()
+        # if nextRect.collidepoint(mx,my) and len(music)>0:
+        #     mixer.music.stop()
+        #     b+=1
+        #     mixer.music.load(music_1.pop(b))
+        #     mixer.music.play()
+        #     print(len(music_1))    
     ##using the tools
 
     if mb[0]==1: ## if left click
