@@ -310,15 +310,13 @@ while running:
                     mixer.music.play(-1)
 
             if evt.key == K_LEFT:
-                print("sdufhlisudhfiushdfliushdfhu")
                 if b <= len(music_l):
-                    b -= 1    
-                    print(b)
-                    try:
-                        mixer.music.load(music_l[b])
-                    except:
-                        b += 1
-                        mixer.music.load(music_l[b])
+                    if b >= 0:
+                        b -= 1
+                        if b == -1:
+                            b += 1    
+                        print(b)
+                    mixer.music.load(music_l[b])
                     mixer.music.play(-1)                        
 
             if evt.key==K_RIGHT and tool == "eraser":
@@ -552,13 +550,6 @@ while running:
         if tool == "background":
             page = 0
 
-        # if nextRect.collidepoint(mx,my) and len(music)>0:
-        #     mixer.music.stop()
-        #     b+=1
-        #     mixer.music.load(music_1.pop(b))
-        #     mixer.music.play()
-        #     print(len(music_1))    
-    ##using the tools
 
     if mb[0]==1: ## if left click
 
